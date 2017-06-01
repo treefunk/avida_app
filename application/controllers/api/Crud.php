@@ -4,16 +4,19 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 class Crud extends \Restserver\Libraries\REST_Controller
 {
-  
+
   function __construct()
   {
     parent::__construct();
+
+    $this->load->model('crud_model');
   }
 
   function index_get()
   {
+    $res = $this->crud_model->getUsers();
     $this->response(
-      array('message'=> 'Get request!'), 200
+      $res, 200
     );
   }
 
