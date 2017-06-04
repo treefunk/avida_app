@@ -14,16 +14,30 @@ class Crud extends \Restserver\Libraries\REST_Controller
 
   function index_get()
   {
-    $res = $this->crud_model->getUsers();
+    $res = $this->crud_model->all();
     $this->response(
       $res, 200
     );
   }
 
+  function crud_get($id)
+  {
+    $res = $this->crud_model->get($id);
+    $this->response(
+      $res, 200
+    );
+
+    #TODO: if no content
+  }
+
   function index_post()
   {
+    $res = $this->crud_model->add($this->input->post());
+
+    header("Location: " . base_url() . "api/" . strtolower(__CLASS__) . "/$res");
+
     $this->response(
-      array('message'=> 'Post request!'), 200
+      $res, 200
     );
   }
 
