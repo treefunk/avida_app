@@ -23,22 +23,36 @@ class Crud extends \Restserver\Libraries\REST_Controller
   function crud_get($id)
   {
     $res = $this->crud_model->get($id);
-    $this->response(
-      $res, 200
-    );
 
-    #TODO: if no content
+    if($res){
+
+      $this->response(
+        $res, 200
+      );
+
+    }else{
+      $this->response(
+        array('message' => 'Not found'), 404
+      );
+    }
+
   }
 
   function index_post()
   {
-    $res = $this->crud_model->add($this->input->post());
 
-    header("Location: " . base_url() . "api/" . strtolower(__CLASS__) . "/$res");
+    if($last_id = $this->crud_model->add($this->input->post())){ # try to add and get the last id
+      $res = $this->crud_model->get($last_id); # get the last entry data
+      $this->response_header('Location', api_url($this) .  $last_id); # set the header location
+      $this->response(
+        $res, 201
+      );
+    }else{
+      $this->response(
+        array('message' => 'Malformed syntax'), 400
+      );
+    }
 
-    $this->response(
-      $res, 200
-    );
   }
 
   function index_put()
