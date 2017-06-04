@@ -25,9 +25,8 @@ class Crud_model extends CI_model
 
   public function add($data)
   {
-    if($this->db->insert($this->table, $data)){
-      return $this->db->insert_id();
-    }
+    $this->db->insert($this->table, $data);
+    return $this->db->insert_id();
   }
 
 }
