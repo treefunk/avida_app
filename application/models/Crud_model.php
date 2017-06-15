@@ -29,4 +29,11 @@ class Crud_model extends CI_model
     return $this->db->insert_id();
   }
 
+  public function delete($data)
+  {
+    $this->db->where('id', $data);
+    $this->db->delete($this->table);
+    return $this->db->affected_rows();
+  }
+
 }

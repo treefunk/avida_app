@@ -20,7 +20,7 @@ class Crud extends \Restserver\Libraries\REST_Controller
     );
   }
 
-  function crud_get($id)
+  function single_get($id)
   {
     $res = $this->crud_model->get($id);
 
@@ -55,18 +55,13 @@ class Crud extends \Restserver\Libraries\REST_Controller
 
   }
 
-  function index_put()
+  function single_delete($id)
   {
+    $res = $this->crud_model->delete($id);
     $this->response(
-      array('message'=> 'Put request!'), 200
+      $res, 200
     );
   }
 
-  function index_patch()
-  {
-    $this->response(
-      array('message'=> 'Patch request!'), 200
-    );
-  }
 
 }

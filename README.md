@@ -13,3 +13,6 @@ These files are excluded or untouched in the version control of this project and
 Go to your `application/migrations/` folder and add or modify your migration classes there.
 
 Migrations are automatically enabled in the `application/migration.php` file (because I enabled it). Though I recommend to set `$config['migration_enabled'] = TRUE;` to `FALSE` when your application is in _production mode_ or after you have migrated your database.
+
+## Development reminders
++ Make sure you customize your `application/config/routes.php` and set up your API routes there manually since Codeigniter uses the _magic routing_. Most of the time, you will have to have more control in your routes a more pragmatic RESTful design.
