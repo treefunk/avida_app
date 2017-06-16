@@ -32,6 +32,10 @@ class Crud extends \Restserver\Libraries\REST_Controller
     # NOTE: This is an example usage of batch upload
     // $data = array_merge($this->input->post(), $this->crud_model->batch_upload($_FILES['input_name']));
 
+    # FIXME
+    $data = array_merge($this->input->post(), $this->crud_model->upload('icon_url'));
+    var_dump($data);
+    die();
     $data = $this->input->post();
 
     if($last_id = $this->crud_model->add($data)){ # Try to add and get the last id

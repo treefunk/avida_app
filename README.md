@@ -17,3 +17,6 @@ Migrations are automatically enabled in the `application/migration.php` file (be
 ## Development reminders
 + Make sure you customize your `application/config/routes.php` and set up your API routes there manually since Codeigniter uses the _magic routing_. Most of the time, you will have to have more control in your routes a more pragmatic RESTful design.
 + In uploading, you can set your `DEFAULT_FOLDER_PERMISSIONS` constant in `application/config/constants.php`
+
+## TODO:
++ Integrate create folder in core upload class

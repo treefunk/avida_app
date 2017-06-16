@@ -70,6 +70,7 @@ class Crud_model extends CI_model
 
   /**
   * Batch upload of the given $_FILES[key] multiple upload input
+  * TODO: Refactor this to accept the key only
   * @param  array   $files   example value is $_FILES[key]
   * @return array           returns a multidimensional array in this structure array[key] => [0 => 'file1', 1 => 'file2']
   */
