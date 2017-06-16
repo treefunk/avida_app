@@ -68,11 +68,16 @@ class Crud_model extends CI_model
     return $this->db->update($this->table, $data, ['id' => $id]);
   }
 
-  public function upload()
+/**
+ * Batch upload of the given $_FILES[key] multiple upload input
+ * @param  array   $files   example value is $_FILES[key]
+ * @return array           returns a multidimensional array in this structure array[key] => [0 => 'file1', 1 => 'file2']
+ */
+  public function batch_upload($files = [])
   {
     # Defaults
-    $k = key($_FILES); # Gets the `key` of the uplaoded thing on your form
-    $files = @$_FILES[$k]; # Gets whatever the value of your uploaded thing is
+    $k = key($files); # Gets the `key` of the uplaoded thing on your form
+
     $uploaded_files = []; # Initialize empty return array
     $upload_path = 'uploads/your_dir'; # Your upload path starting from the `root folder`
 
