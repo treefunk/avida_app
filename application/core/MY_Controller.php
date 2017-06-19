@@ -14,18 +14,20 @@ class Crud_controller extends \Restserver\Libraries\REST_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('crud_model');
+    # Do not forget to load your model in your child class
+    # $this->load->model('Example_model', 'model');
+    # Do not change the 2nd parameter because we need a generic model name for this
   }
 
   function index_get()
   {
-    $res = $this->crud_model->all();
+    $res = $this->model->all();
     $this->response($res, 200);
   }
 
   function single_get($id)
   {
-    $res = $this->crud_model->get($id);
+    $res = $this->model->get($id);
     if($res){
       $this->response($res, 200);
     }else{
@@ -36,15 +38,15 @@ class Crud_controller extends \Restserver\Libraries\REST_Controller
   function index_post()
   {
     # NOTE: This is an example usage of batch upload
-    // $data = array_merge($this->input->post(), $this->crud_model->batch_upload($_FILES['input_name']));
+    // $data = array_merge($this->input->post(), $this->model->batch_upload($_FILES['input_name']));
 
     # NOTE: This is an example usage of single upload
-    // $data = array_merge($this->input->post(), $this->crud_model->upload('some_text_field'));
+    // $data = array_merge($this->input->post(), $this->model->upload('some_text_field'));
 
     $data = $this->input->post();
 
-    if($last_id = $this->crud_model->add($data)){ # Try to add and get the last id
-      $res = $this->crud_model->get($last_id); # Get the last entry data
+    if($last_id = $this->model->add($data)){ # Try to add and get the last id
+      $res = $this->model->get($last_id); # Get the last entry data
       $this->response_header('Location', api_url($this) .  $last_id); # Set the header location
       $this->response($res, 201);
     }else{
@@ -60,15 +62,15 @@ class Crud_controller extends \Restserver\Libraries\REST_Controller
   {
 
     # If upload failed, just set default post data
-    if(($upload_arr = $this->crud_model->upload('some_text_field')) === [])
+    if(($upload_arr = $this->model->upload('some_text_field')) === [])
     $data = $this->input->post();
     else # If upload was successful, merge array
     $data = array_merge($this->input->post(), $upload_arr);
 
-    $res = $this->crud_model->update($id, $data);
+    $res = $this->model->update($id, $data);
 
     if($res){
-      $res = $this->crud_model->get($id);
+      $res = $this->model->get($id);
       $this->response_header('Location', api_url($this) .  $id); # Set the newly created object's location
       $this->response($res, 200);
     }else{
@@ -78,7 +80,7 @@ class Crud_controller extends \Restserver\Libraries\REST_Controller
 
   function single_delete($id)
   {
-    $res = $this->crud_model->delete($id);
+    $res = $this->model->delete($id);
     if($res > 0){
       $this->response($res, 204); # Omits the response anyway if 204
     }else{
