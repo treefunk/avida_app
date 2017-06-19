@@ -71,7 +71,8 @@ class Crud_model extends CI_model
   */
   public function update($id, $data)
   {
-    return $this->db->update($this->table, $data, ['id' => $id]);
+    $this->db->update($this->table, $data, ['id' => $id]);
+    return $this->db->affected_rows();
   }
 
   /**
