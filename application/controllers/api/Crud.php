@@ -32,10 +32,9 @@ class Crud extends \Restserver\Libraries\REST_Controller
     # NOTE: This is an example usage of batch upload
     // $data = array_merge($this->input->post(), $this->crud_model->batch_upload($_FILES['input_name']));
 
-    # FIXME
-    $data = array_merge($this->input->post(), $this->crud_model->upload('icon_url'));
-    var_dump($data);
-    die();
+    # NOTE: This is an example usage of single upload
+    // $data = array_merge($this->input->post(), $this->crud_model->upload('some_text_field'));
+
     $data = $this->input->post();
 
     if($last_id = $this->crud_model->add($data)){ # Try to add and get the last id
@@ -53,7 +52,15 @@ class Crud extends \Restserver\Libraries\REST_Controller
   */
   function single_post($id)
   {
-    $res = $this->crud_model->update($id, $this->input->post());
+    
+    # If upload failed, just set default post data
+    if(($upload_arr = $this->crud_model->upload('some_text_field')) === [])
+    $data = $this->input->post();
+    else # If upload was successful, merge array
+    $data = array_merge($this->input->post(), $upload_arr);
+
+    $res = $this->crud_model->update($id, $data);
+
     if($res){
       $res = $this->crud_model->get($id);
       $this->response_header('Location', api_url($this) .  $id); # Set the newly created object's location
