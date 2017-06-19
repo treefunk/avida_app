@@ -1,5 +1,11 @@
 <?php
 
+class MY_Model extends CI_model
+{
+  # Just need to declare this but not needing it
+  # I prefer more declarative class names than `MY_*`
+}
+
 class Crud_model extends CI_model
 {
   /**
@@ -133,7 +139,7 @@ class Crud_model extends CI_model
     if (!is_dir($upload_path) && !mkdir($upload_path, DEFAULT_FOLDER_PERMISSIONS, true)){
       mkdir($upload_path, DEFAULT_FOLDER_PERMISSIONS, true); # You can set DEFAULT_FOLDER_PERMISSIONS constant in application/config/constants.php
     }
-    
+
     if($this->upload->do_upload($file_key)){
       return [$file_key => $this->upload->data('file_name')];
     }else{

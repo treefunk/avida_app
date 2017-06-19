@@ -2,7 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
-class Crud extends \Restserver\Libraries\REST_Controller
+class MY_Controller extends \Restserver\Libraries\REST_Controller
+{
+  # Just need to declare this but not needing it
+  # I prefer more declarative class names than `MY_*`
+}
+
+class Crud_controller extends \Restserver\Libraries\REST_Controller
 {
 
   function __construct()
@@ -52,7 +58,7 @@ class Crud extends \Restserver\Libraries\REST_Controller
   */
   function single_post($id)
   {
-    
+
     # If upload failed, just set default post data
     if(($upload_arr = $this->crud_model->upload('some_text_field')) === [])
     $data = $this->input->post();
