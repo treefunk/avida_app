@@ -120,7 +120,7 @@ class Crud_model extends CI_model
    */
   public function upload($file_key)
   {
-    $file = $_FILES[$file_key];
+    @$file = $_FILES[$file_key];
     $upload_path = "uploads/your_dir";
 
     $config['upload_path'] = $upload_path; # NOTE: Change your directory as needed
@@ -133,10 +133,11 @@ class Crud_model extends CI_model
     if (!is_dir($upload_path) && !mkdir($upload_path, DEFAULT_FOLDER_PERMISSIONS, true)){
       mkdir($upload_path, DEFAULT_FOLDER_PERMISSIONS, true); # You can set DEFAULT_FOLDER_PERMISSIONS constant in application/config/constants.php
     }
-
+    
     if($this->upload->do_upload($file_key)){
       return [$file_key => $this->upload->data('file_name')];
     }else{
+      // echo $this->upload->display_errors(); die();
       return [];
     }
 
