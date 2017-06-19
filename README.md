@@ -20,3 +20,4 @@ Migrations are automatically enabled in the `application/migration.php` file (be
 
 ## TODO:
 + Integrate create folder in core upload class
++ Documentation of MY_Controller
