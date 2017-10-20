@@ -15,16 +15,23 @@ class Crud_model extends CI_model
   protected $table;
 
   /**
-   * The directory you want to upload to whose parent dir is `uploads` folder
-   * @var [type]
-   */
+  * The directory you want to upload to whose parent dir is `uploads` folder
+  * @var [type]
+  */
   protected $upload_dir;
 
   public function __construct()
   {
     parent::__construct();
-    $this->table = 'crud';
-    $this->upload_dir = 'test';
+    $this->table = 'crud'; # change this to the model's corresponding table
+    $this->upload_dir = 'your_dir'; # uploads/your_dir
+    $this->uploads_folder = "uploads/" . $this->upload_dir . "/";
+    $this->full_up_path = base_url() . "uploads/" . $this->upload_dir . "/"; # override this block on your child class. just redeclare it
+
+    # Use `$this->db->reset_query();` on the child class to override these two. Then redeclare them as needed
+    // $this->db->order_by('id', 'DESC');
+
+    $this->paginate(); # apply pagination to all methods
   }
 
   /**
@@ -159,5 +166,24 @@ class Crud_model extends CI_model
     }
 
   }
+
+  /**
+  * this is for pagination
+  * uses $this->input->get('page') and $this->input->get('per_page')
+  * @return [type] [description]
+  */
+  public function paginate()
+  {
+    if ($this->input->get('page')){
+      $per_page = ($this->input->get('per_page')) ? $this->input->get('per_page') : 10; # Make 10 default $per_page if $per_page is not set
+      $offset = ($_GET['page'] - 1) * $per_page;
+      $this->db->limit($per_page, $offset);
+    }
+  }
+
+  ###########################################
+  # your custom methods go beyond this line #
+  ###########################################
+  
 
 }

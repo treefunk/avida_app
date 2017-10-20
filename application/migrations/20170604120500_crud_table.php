@@ -18,6 +18,9 @@ class Migration_crud_table extends CI_Migration {
       'some_text_field' => array(
         'type' => 'TEXT',
       ),
+      'image_url' => array(
+        'type' => 'TEXT',
+      ),
       'some_int_field' => array(
         'type' => 'INT',
       ),
