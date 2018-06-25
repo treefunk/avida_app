@@ -8,7 +8,7 @@
   <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
 
-  <title>Cebu Landmasters</title>
+  <title>CMS</title>
 
   <!-- Bootstrap core CSS -->
   <link href="<?php echo base_url('public/admin/') ?>css/bootstrap.min.css" rel="stylesheet">
@@ -60,9 +60,9 @@
   <div class="container">
 
     <form class="form-signin" action="index.html">
-      <h2 class="form-signin-heading" style="background: dimgray;">
-        <img src="<?php echo base_url('public/front/images/')?>clm-logo2.png" alt=""
-        style="max-height:80px;">
+      <h2 class="form-signin-heading" style="background: dimgray;"> ADMIN LOGIN
+        <!-- <img src="" alt=""
+        style="max-height:80px;"> -->
       </h2>
       <div class="login-wrap">
         <input type="text" class="form-control" placeholder="Email" autofocus>
@@ -78,7 +78,7 @@
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="<?php echo base_url('public/admin/') ?>js/jquery.js"></script>
   <script src="<?php echo base_url('public/admin/') ?>js/bootstrap.min.js"></script>
-  <script src="<?php echo base_url('public/admin/js/custom/') ?>login.js"></script>
+  <!-- <script src="<?php echo base_url('public/admin/js/custom/') ?>login.js"></script> -->
 
 </body>
 </html>
