@@ -8,7 +8,7 @@
   <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
 
-  <title>Cebu Landmasters</title>
+  <title>RestIgniter CRUD</title>
 
   <!-- Bootstrap core CSS -->
   <link href="<?php echo base_url('public/admin/'); ?>css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,6 @@
   <script src="<?php echo base_url('public/admin/'); ?>js/jquery.js"></script>
   <script type="text/javascript">
     const base_url = '<?php echo base_url(); ?>';
-    const loader_gif = '<?php echo createLoader(['type' => 'gear']) ?>';
   </script>
 </head>
 

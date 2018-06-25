@@ -8,6 +8,64 @@ class MY_Controller extends \Restserver\Libraries\REST_Controller
   # I prefer more declarative class names than `MY_*`
 }
 
+class Admin_core_controller extends CI_Controller
+{
+  function __construct()
+  {
+    parent::__construct();
+  }
+
+  public function wrapper($body, $data = null)
+  {
+    if ($this->session->role !== 'administrator') {
+      redirect('cms/login');
+    }
+
+    $this->load->view('cms/partials/header');
+    $this->load->view('cms/partials/left-sidebar');
+    $this->load->view($body, $data);
+    $this->load->view('cms/partials/footer');
+  }
+
+  public function admin_redirect($param = null)
+  {
+    if ($this->session->role !== 'administrator') {
+      redirect('cms/login');
+    } else {
+      redirect($param);
+    }
+  }
+}
+
+class Front_core_controller extends CI_Controller
+{
+  function __construct()
+  {
+    parent::__construct();
+  }
+
+  public function wrapper($body, $data = null,  $sidebar = 'generic')
+  {
+    if ($this->session->role !== 'user') {
+      redirect('login');
+    }
+
+    $this->load->view('front/partials/header');
+    $this->load->view("front/partials/sidebar/{$sidebar}", $seller);
+    $this->load->view($body, $data);
+    $this->load->view('front/partials/footer');
+  }
+
+  public function front_redirect($param = null)
+  {
+    if ($this->session->role !== 'user') {
+      redirect('login');
+    } else {
+      redirect($param);
+    }
+  }
+}
+
 class Crud_controller extends \Restserver\Libraries\REST_Controller
 {
 

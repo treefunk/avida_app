@@ -25,18 +25,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php if (count($admins) > 0 ): ?>
+                  <?php if (count($res) > 0 ): ?>
 
-                    <?php $i = 1; foreach ($admins as $key => $admin): ?>
+                    <?php $i = 1; foreach ($res as $key => $value): ?>
                       <tr>
                         <th scope="row"><?php echo $i++ ?></th>
-                        <td><?php echo $admin->name ?></td>
-                        <td><?php echo $admin->email ?></td>
+                        <td><?php echo $value->name ?></td>
+                        <td><?php echo $value->email ?></td>
                         <td>
                           <button type="button"
-                          data-payload='<?php echo json_encode(['id' => $admin->id, 'name' => $admin->name, 'email' => $admin->email])?>'
+                          data-payload='<?php echo json_encode(['id' => $value->id, 'name' => $value->name, 'email' => $value->email])?>'
                           class="edit-row btn btn-info btn-xs">Edit</button>
-                          <button type="button" data-id='<?php echo $admin->id; ?>'
+                          <button type="button" data-id='<?php echo $value->id; ?>'
                             class="btn btn-delete btn-danger btn-xs">Delete</button>
                           </td>
                         </tr>

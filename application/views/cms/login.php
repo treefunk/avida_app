@@ -8,7 +8,7 @@
   <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
 
-  <title>CMS</title>
+  <title>CMS Login</title>
 
   <!-- Bootstrap core CSS -->
   <link href="<?php echo base_url('public/admin/') ?>css/bootstrap.min.css" rel="stylesheet">
@@ -56,24 +56,22 @@
 </head>
 
 <body class="login-body">
-
   <div class="container">
-
-    <form class="form-signin" action="index.html">
-      <h2 class="form-signin-heading" style="background: dimgray;"> ADMIN LOGIN
+    <form class="form-signin" method="post" action="<?php echo base_url('cms/login/attempt') ?>">
+      <h2 class="form-signin-heading" style="background: dimgray;"> CMS LOGIN
         <!-- <img src="" alt=""
         style="max-height:80px;"> -->
       </h2>
       <div class="login-wrap">
-        <input type="text" class="form-control" placeholder="Email" autofocus>
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="text" name="email" class="form-control" placeholder="Email" autofocus>
+        <input type="password" name="password" class="form-control" placeholder="Password">
+        <?php if ($login_msg = $this->session->login_msg): ?>
+          <p style="color: <?php echo $login_msg['color'] ?>"><?php echo $login_msg['message'] ?></p>
+        <?php endif; ?>
         <button style="background: dimgray; box-shadow: 0px 4px #908f8f"
         class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
       </div>
-
-
     </form>
-
   </div>
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="<?php echo base_url('public/admin/') ?>js/jquery.js"></script>
