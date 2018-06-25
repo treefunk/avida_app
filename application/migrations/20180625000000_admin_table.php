@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Migration_admin_table extends CI_Migration {
 
-  public function create_admin()
+  public function up()
   {
     $this->dbforge->add_field('id');
     $this->dbforge->add_field(array(
@@ -35,11 +35,6 @@ class Migration_admin_table extends CI_Migration {
       );
       $this->db->insert($table, $data);
     }
-  }
-
-  public function up()
-  {
-    $this->create_admin();
   }
 
   public function down()
