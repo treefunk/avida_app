@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | and disable it back when you're done.
 |
 */
-$config['migration_enabled'] = getenv('MIGRATION_ENABLED');
+$config['migration_enabled'] =  filter_var(getenv('MIGRATION_ENABLED'), FILTER_VALIDATE_BOOLEAN); # Make sure our boolean is parsed!!!
 
 /*
 |--------------------------------------------------------------------------
