@@ -5,10 +5,10 @@ class Area_model extends Crud_model
     public function __construct()
     {
         parent::__construct();
-
+        $this->load->model('api/city_model');
     }
 
-    public function all($filters = null)
+    public function all_2($filters = null)
     {
         $the_query = new WP_Query([
             'post_type' => 'area',
@@ -22,7 +22,7 @@ class Area_model extends Crud_model
 
                 $area = [
                     'id' => get_the_ID(),
-                    'name' => get_the_title(),
+                    'area_name' => get_the_title(),
                     'body' => get_the_content()
                 ];
 
@@ -35,6 +35,35 @@ class Area_model extends Crud_model
 
 
         return $result;
+    }
+
+    public function all(){
+        $the_query = new WP_Query([
+            'post_type' => 'area',
+            'numberposts' => -1
+        ]);
+        
+        $result = [];
+        if ( $the_query->have_posts() ) {  
+            while ( $the_query->have_posts() ){
+                $the_query->the_post();
+
+                $area = [
+                    'id' => get_the_ID(),
+                    'area_name' => get_the_title(),
+                    'cities' => $this->city_model->getAllCitiesByAreaId(get_the_ID())
+                ];
+
+                $result[] = $area;
+            }
+            wp_reset_postdata(); 
+        } else {  
+
+        }
+
+
+        return $result;
+
     }
 
     public function getAllAreasIds()
@@ -76,7 +105,13 @@ class Area_model extends Crud_model
     {
         if($area = get_post($id)){
             if($area->post_type == 'area'){
-                return $area;
+
+                $formatted = new StdClass;
+                $formatted->id = $area->ID;
+                $formatted->name = $area->post_title;
+                $formatted->body = $area->post_content;
+
+                return $formatted;
             }
             return new StdClass;
         }

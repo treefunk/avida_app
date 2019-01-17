@@ -38,8 +38,10 @@ useWPFunctions();
 // must be inside the wordpress loop
 function get_values_in_repeater($repeater_name,$sub_field = null){
   $result = [];
-  foreach(get_field($repeater_name) as $obj){
-    $result[] = $obj[$sub_field];
+  if(is_array(get_field($repeater_name))){
+    foreach(get_field($repeater_name) as $obj){
+      $result[] = $obj[$sub_field];
+    }
   }
   return $result;
 }

@@ -5,6 +5,7 @@ class City_model extends Crud_model
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('api/project_model');
 
     }
 
@@ -62,8 +63,8 @@ class City_model extends Crud_model
 
                 $city = [
                     'id' => get_the_ID(),
-                    'name' => get_the_title(),
-                    'body' => get_the_content()
+                    'city_name' => get_the_title(),
+                    'projects' => $this->project_model->getProjectsByAreaId($id)
                 ];
 
                 $result[] = $city;
@@ -80,7 +81,13 @@ class City_model extends Crud_model
     {
         if($city = get_post($id)){
             if($city->post_type == 'city'){
-                return $city;
+                
+                $formatted = new StdClass;
+                $formatted->id = $city->ID;
+                $formatted->name = $city->post_title;
+                $formatted->body = $city->post_content;
+
+                return $formatted;
             }
             return new StdClass;
         }

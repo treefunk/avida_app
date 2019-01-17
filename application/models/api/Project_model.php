@@ -128,7 +128,49 @@ class Project_model extends Crud_model
      * returns a formatted project
      * must be inside the WP loop
      */
-    public function generate_project(){
+    public function generate_project($single = false)
+    {
+
+        if(!$single){  
+            $project = [
+                'id' => get_the_ID(),
+                'project_name' => get_the_title(),
+                'coverimages_title' => get_values_in_repeater('cover_images','cover_title'),
+                'coverimages_image' => get_values_in_repeater('cover_images','cover_image'),
+                'excerpt' => get_field('excerpt'),
+            ];
+        }else{
+            $project = [
+                'id' => get_the_ID(),
+                'prop' => get_the_title(),
+                'property_type' => get_field('property_type'),
+                'menuImage' => get_field('menu_image'),
+                'prop_logo' => get_field('logo'),
+                'coverimages_title' => get_values_in_repeater('cover_images','cover_title'),
+                'coverimages_image' => get_values_in_repeater('cover_images','cover_image'),
+                'excerpt' => get_field('excerpt'),
+                'ov_description' => get_field('overview_description'),
+                'overview' => get_field('overview'),
+                'overview_image' => get_field('overview_image'),
+                'amen_titles' => get_values_in_repeater('amenities','amen_title'),
+                'amen_images' =>  get_values_in_repeater('amenities','amen_image'),
+                'floorplan_image' => get_values_in_repeater('floor_plans','floorplan_image'),
+                'floorplan_title' => get_values_in_repeater('floor_plans','floorplan_title'),
+                'gallery_image' => get_values_in_repeater('gallery','gallery_image'),
+                'gallery_title' => get_values_in_repeater('gallery','gallery_title'),
+                'location_lat' => get_field('location_latitude'),
+                'location_long' => get_field('location_longitude'),
+                'location_title' => get_field('location_title'),
+                'location_image' => get_field('loc_image'),
+                'city' => $city,
+                'area' => $area,
+                'unitplans_image' => get_values_in_repeater('unit_plans','unitplans_image'),
+                'unitplans_title' => get_values_in_repeater('unit_plans', 'unitplans_title'),
+                'ios_video' => get_field('ios_video'),
+                'and_video' => get_field('and_video'),
+                'last_updated' => $new_last_updated
+            ];
+        }
 
         $last_updated = get_the_modified_date() .' '. get_the_modified_time();
 
@@ -156,34 +198,7 @@ class Project_model extends Crud_model
         // }
 
 
-        $project = [
-            'id' => get_the_ID(),
-            'prop' => get_the_title(),
-            'property_type' => get_field('property_type'),
-            'menuImage' => get_field('menu_image'),
-            'prop_logo' => get_field('logo'),
-            'cover_image' => get_field('cover_image'),
-            'ov_description' => get_field('overview_description'),
-            'overview' => get_field('overview'),
-            'overview_image' => get_field('overview_image'),
-            'amen_titles' => get_values_in_repeater('amenities','amen_title'),
-            'amen_images' =>  get_values_in_repeater('amenities','amen_image'),
-            'floorplan_image' => get_values_in_repeater('floor_plans','floorplan_image'),
-            'floorplan_title' => get_values_in_repeater('floor_plans','floorplan_title'),
-            'gallery_image' => get_values_in_repeater('gallery','gallery_image'),
-            'gallery_title' => get_values_in_repeater('gallery','gallery_title'),
-            'location_lat' => get_field('location_latitude'),
-            'location_long' => get_field('location_longitude'),
-            'location_title' => get_field('location_title'),
-            'location_image' => get_field('loc_image'),
-            'city' => $city,
-            'area' => $area,
-            'unitplans_image' => get_values_in_repeater('unit_plans','unitplans_image'),
-            'unitplans_title' => get_values_in_repeater('unit_plans', 'unitplans_title'),
-            'ios_video' => get_field('ios_video'),
-            'and_video' => get_field('and_video'),
-            'last_updated' => $new_last_updated
-        ];
+        
 
         return $project;
     }
@@ -205,7 +220,7 @@ class Project_model extends Crud_model
                 while ( $the_query->have_posts() ){
                     $the_query->the_post();
     
-                    $project = $this->generate_project();
+                    $project = $this->generate_project(true);
                     $result = $project;
     
                     

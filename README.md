@@ -717,13 +717,91 @@ project_id : 174
     "data": [
         {
             "id": 170,
-            "name": "Visayas",
-            "body": ""
+            "area_name": "Visayas",
+            "cities": [
+                {
+                    "id": 173,
+                    "city_name": "Cebu City",
+                    "projects": [
+                        {
+                            "id": 232,
+                            "project_name": "another project in makati",
+                            "coverimages_title": [
+                                "test"
+                            ],
+                            "coverimages_image": [
+                                "http://avidaapp.betaprojex.com/wp-content/uploads/2019/01/Optimind02.png"
+                            ],
+                            "excerpt": ""
+                        },
+                        {
+                            "id": 174,
+                            "project_name": "proj in cebu",
+                            "coverimages_title": [
+                                "cebucover"
+                            ],
+                            "coverimages_image": [
+                                "http://avidaapp.betaprojex.com/wp-content/uploads/2019/01/Optimind02.png"
+                            ],
+                            "excerpt": ""
+                        }
+                    ]
+                }
+            ]
         },
         {
             "id": 32,
-            "name": "Metro Manila",
-            "body": ""
+            "area_name": "Metro Manila",
+            "cities": [
+                {
+                    "id": 171,
+                    "city_name": "Makati City",
+                    "projects": [
+                        {
+                            "id": 172,
+                            "project_name": "proj in makati",
+                            "coverimages_title": [],
+                            "coverimages_image": [],
+                            "excerpt": ""
+                        },
+                        {
+                            "id": 156,
+                            "project_name": "Aspira",
+                            "coverimages_title": [
+                                "test"
+                            ],
+                            "coverimages_image": [
+                                "http://avidaapp.betaprojex.com/wp-content/uploads/2019/01/Optimind02.png"
+                            ],
+                            "excerpt": ""
+                        }
+                    ]
+                },
+                {
+                    "id": 75,
+                    "city_name": "Quezon City",
+                    "projects": [
+                        {
+                            "id": 172,
+                            "project_name": "proj in makati",
+                            "coverimages_title": [],
+                            "coverimages_image": [],
+                            "excerpt": ""
+                        },
+                        {
+                            "id": 156,
+                            "project_name": "Aspira",
+                            "coverimages_title": [
+                                "test"
+                            ],
+                            "coverimages_image": [
+                                "http://avidaapp.betaprojex.com/wp-content/uploads/2019/01/Optimind02.png"
+                            ],
+                            "excerpt": ""
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "meta": {
