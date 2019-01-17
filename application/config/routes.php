@@ -1,6 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// $path = $_SERVER['DOCUMENT_ROOT'];
+$path = "../";
+@include_once $path . '/wp-config.php';
+@include_once $path . '/wp-load.php';
+@include_once $path . '/wp-includes/wp-db.php';
+@include_once $path . '/wp-includes/pluggable.php';
+
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -70,3 +77,5 @@ $route['migrate/(:any)'] = 'migrate/index/$1';
 # Restserver default examples
 $route['api/example/users/(:num)'] = 'api/example/users/id/$1';
 $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8
+
+
