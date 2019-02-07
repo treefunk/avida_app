@@ -16,7 +16,7 @@
     + [Get All Cities](#get-all-cities)
     + [Get City By Id](#get-city-by-id)
     + [Get All Cities By Area Id](#get-cities-by-area-id)
-
+    + [Get About Us Content](#get-about-us-content)
 
 # Get Projects
 
@@ -980,6 +980,58 @@ area_id: 32
     ],
     "meta": {
         "message": "Got All Data",
+        "code": 200
+    }
+}
+```
+
+# Get About Us Content
+
+
+**URL** : `/api/about`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Sample Content**
+```json
+{
+    "data": {
+        "title": "About Us",
+        "content": "<strong>Transforming land, names, and lives</strong>\r\n\r\nsince it developed the vast tract of swamp land that is now the bustling city of Makati\r\n\r\n&nbsp;\r\n\r\n&nbsp;"
+    },
+    "meta": {
+        "code": 200
+    }
+}
+```
+
+# Get Privacy Policy Content
+
+
+**URL** : `/api/privacy_policy`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Sample Content**
+```json
+{
+    "data": {
+        "title": "Privacy Policy",
+        "content": "<div>\r\n<div><strong>1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis</strong></div>\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n<div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis</div>\r\n<div><strong>2. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis</strong></div>\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n<div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis</div>\r\n</div>\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n<div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n&nbsp;\r\n\r\n&nbsp;"
+    },
+    "meta": {
         "code": 200
     }
 }

@@ -54,6 +54,7 @@ class Project_model extends Crud_model
         if ( $the_query->have_posts() ) {  
             while ( $the_query->have_posts() ){
                 $the_query->the_post();
+                
 
                 $project = $this->generate_project();
 
@@ -135,6 +136,7 @@ class Project_model extends Crud_model
             $project = [
                 'id' => get_the_ID(),
                 'project_name' => get_the_title(),
+                'property_type' => get_field('property_type'),
                 'coverimages_title' => get_values_in_repeater('cover_images','cover_title'),
                 'coverimages_image' => get_values_in_repeater('cover_images','cover_image'),
                 'excerpt' => get_field('excerpt'),
@@ -151,9 +153,9 @@ class Project_model extends Crud_model
                 'excerpt' => get_field('excerpt'),
                 'ov_description' => get_field('overview_description'),
                 'overview' => get_field('overview'),
+                'video_link' => get_field('video_link'),
                 'overview_image' => get_field('overview_image'),
-                'amen_titles' => get_values_in_repeater('amenities','amen_title'),
-                'amen_images' =>  get_values_in_repeater('amenities','amen_image'),
+                'amenities' => $this->categorize_amenities(),
                 'floorplan_image' => get_values_in_repeater('floor_plans','floorplan_image'),
                 'floorplan_title' => get_values_in_repeater('floor_plans','floorplan_title'),
                 'gallery_image' => get_values_in_repeater('gallery','gallery_image'),
@@ -166,6 +168,8 @@ class Project_model extends Crud_model
                 'area' => $area,
                 'unitplans_image' => get_values_in_repeater('unit_plans','unitplans_image'),
                 'unitplans_title' => get_values_in_repeater('unit_plans', 'unitplans_title'),
+                'cons_update_title' => get_values_in_repeater('construction_updates','cons_update_title'),
+                'cons_update_image' => get_values_in_repeater('construction_updates','cons_update_image'),
                 'ios_video' => get_field('ios_video'),
                 'and_video' => get_field('and_video'),
                 'last_updated' => $new_last_updated
@@ -240,5 +244,53 @@ class Project_model extends Crud_model
             return new StdClass;
         }
 
+    }
+
+    public function categorize_amenities()
+    {
+        $amenities = get_field('amenities');
+
+        $result = [];
+        for($x = 0; $x < count($amenities); $x++)
+        {
+            //
+            if(count($result) == 0){
+
+                $result[] = $this->createNewCat($x,$amenities);
+
+            }else{
+                $found = false;
+                    for($y = 0 ; $y < count($result); $y++)
+                    {
+                        if($result[$y]['category'] == $amenities[$x]['category'])
+                        {
+                            $result[$y]['category_titles'][] = $amenities[$x]['amen_title'];
+                            $result[$y]['category_images'][] = $amenities[$x]['amen_image'];
+                            $found = true;
+                            break;
+                        }              
+                    }
+                if(!$found){
+                    $result[] = $this->createNewCat($x,$amenities);
+                }   
+                    
+            }
+        }
+        return $result;
+    }
+
+    public function createNewCat($index,$amenities)
+    {
+
+        $cat = [
+            'category' => $amenities[$index]['category'],
+            'category_titles' => [],
+            'category_images' => []
+        ];
+        $cat['category_titles'][] = $amenities[$index]['amen_title'];
+        $cat['category_images'][] = $amenities[$index]['amen_image'];
+
+
+        return $cat;
     }
 }
