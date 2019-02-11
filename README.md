@@ -15,6 +15,7 @@
     + [Get Area By Id](#get-area-by-id)
     + [Get All Cities](#get-all-cities)
     + [Get City By Id](#get-city-by-id)
+    + [Get All Notifications](#get-all-notifications)
     + [Get All Cities By Area Id](#get-cities-by-area-id)
     + [Get About Us Content](#get-about-us-content)
 
@@ -984,6 +985,61 @@ area_id: 32
     }
 }
 ```
+# Get All Notifications
+
+
+**URL** : `/api/notifications`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Sample Content**
+
+```json
+{
+    "data": [{
+        "id": 340,
+        "title": "notification title",
+        "body": "notification text"
+    }],
+    "meta": {
+        "message": "Got all data.",
+        "code": 200
+    }
+}
+```
+# Get Notification By Id
+
+**URL** : `/api/notification/{notification_id}`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Sample Content**
+city_id: 340
+```json
+{
+    "data": {
+        "id": 340,
+        "title": "notification title",
+        "body": "notification text"
+    },
+    "meta": {
+        "code": 200
+    }
+}
+```
+
 
 # Get About Us Content
 
@@ -1036,3 +1092,4 @@ area_id: 32
     }
 }
 ```
+
