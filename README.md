@@ -14,10 +14,12 @@
     + [Get All Areas](#get-all-areas)
     + [Get Area By Id](#get-area-by-id)
     + [Get All Cities](#get-all-cities)
+    + [Get All Cities By Area Id](#get-cities-by-area-id)
     + [Get City By Id](#get-city-by-id)
     + [Get All Notifications](#get-all-notifications)
-    + [Get All Cities By Area Id](#get-cities-by-area-id)
+    + [Get Notifications By Id](#get-notification-by-id)
     + [Get About Us Content](#get-about-us-content)
+    + [Get Privacy Policy Content](#get-privacy-policy-content)
 
 # Get Projects
 
@@ -1015,7 +1017,7 @@ area_id: 32
 ```
 # Get Notification By Id
 
-**URL** : `/api/notification/{notification_id}`
+**URL** : `/api/notifications/{notification_id}`
 
 **Method** : `GET`
 
@@ -1026,7 +1028,7 @@ area_id: 32
 **Code** : `200 OK`
 
 **Sample Content**
-city_id: 340
+notification_id: 340
 ```json
 {
     "data": {
