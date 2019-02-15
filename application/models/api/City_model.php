@@ -64,7 +64,7 @@ class City_model extends Crud_model
                 $city = [
                     'id' => get_the_ID(),
                     'city_name' => get_the_title(),
-                    'projects' => $this->project_model->getProjectsByAreaId($id)
+                    'projects' => $this->project_model->getProjectsByCityId(get_the_ID())
                 ];
 
                 $result[] = $city;

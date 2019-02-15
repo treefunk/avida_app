@@ -20,6 +20,7 @@
     + [Get Notifications By Id](#get-notification-by-id)
     + [Get About Us Content](#get-about-us-content)
     + [Get Privacy Policy Content](#get-privacy-policy-content)
+    + [Contact Us](#contact-us)
 
 # Get Projects
 
@@ -1090,6 +1091,48 @@ notification_id: 340
         "content": "<div>\r\n<div><strong>1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis</strong></div>\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n<div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis</div>\r\n<div><strong>2. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis</strong></div>\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n<div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis</div>\r\n</div>\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis\r\n<div>\r\n<div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt aut rerum cupiditate accusantium corporis</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n&nbsp;\r\n\r\n&nbsp;"
     },
     "meta": {
+        "code": 200
+    }
+}
+```
+
+# Contact us
+
+
+**URL** : `/api/contact`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+#### Params
+|Parameter|Type|Sample|
+|----|----|---|
+|firstname|String|"Jhondee"|
+|lastname|String|"Diaz"|
+|contact_num|String|"0912-00-00"|
+|email|String|"jhondz@myoptimind.com"|
+|property_name|String|"Project ABC"|
+|message|String|"Hello"|
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Sample Content**
+
+```json
+{
+    "data": {
+        "firstname": "Jhondee",
+        "lastname": "Diaz",
+        "contact_num": "0912-00-00",
+        "email": "jhondz@myoptimind.com",
+        "property_name": "Project ABC",
+        "message": "Hello"
+    },
+    "meta": {
+        "message": "Inquiry successfully sent!",
         "code": 200
     }
 }

@@ -21,7 +21,8 @@ class Notification_model extends Crud_model
                 $notification = [
                     'id' => get_the_ID(),
                     'title' => get_the_title(),
-                    'body' => get_field('text')
+                    'body' => get_field('text'),
+                    'created_at' => get_the_date('Y-m-d H:i:s'),        
                 ];
 
                 $result[] = $notification;
@@ -44,6 +45,7 @@ class Notification_model extends Crud_model
                 $formatted->id = $notification->ID;
                 $formatted->title = $notification->post_title;
                 $formatted->body = get_field('text',$id);
+                $formatted->created_at = $notification->post_date;
 
                 return $formatted;
             }

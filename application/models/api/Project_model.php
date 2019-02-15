@@ -6,6 +6,7 @@ class Project_model extends Crud_model
     {
         parent::__construct();
         $this->load->model('api/area_model');
+        $this->load->model('api/city_model');
 
     }
 
@@ -139,22 +140,43 @@ class Project_model extends Crud_model
                 'property_type' => get_field('property_type'),
                 'coverimages_title' => get_values_in_repeater('cover_images','cover_title'),
                 'coverimages_image' => get_values_in_repeater('cover_images','cover_image'),
-                'excerpt' => get_field('excerpt'),
+                'excerpt' => get_field('excerpt') ?: "",
             ];
         }else{
+            $last_updated = get_the_modified_date() .' '. get_the_modified_time();
+
+            $new_last_updated = DateTime::createFromFormat('F j, Y H:i A',$last_updated,new DateTimeZone('Asia/Hong_Kong'))->format('Y-m-d h:i:s');
+
+            $citydb = get_field('city');
+
+            $city = [
+                'id' => $citydb->ID,
+                'name' => $citydb->post_title,
+                'body' => $citydb->post_content
+            ];
+
+            $areadb = $this->area_model->getAreaByCityId($citydb->ID);
+
+
+            $area = [
+                'id' => $areadb->ID,
+                'name' => $areadb->post_title,
+                'body' => $areadb->post_content,
+            ];
+
             $project = [
                 'id' => get_the_ID(),
                 'prop' => get_the_title(),
                 'property_type' => get_field('property_type'),
-                'menuImage' => get_field('menu_image'),
-                'prop_logo' => get_field('logo'),
+                'menuImage' => get_field('menu_image') ?:"",
+                'prop_logo' => get_field('logo') ?: "",
                 'coverimages_title' => get_values_in_repeater('cover_images','cover_title'),
                 'coverimages_image' => get_values_in_repeater('cover_images','cover_image'),
                 'excerpt' => get_field('excerpt'),
                 'ov_description' => get_field('overview_description'),
                 'overview' => get_field('overview'),
                 'video_link' => get_field('video_link'),
-                'overview_image' => get_field('overview_image'),
+                'overview_image' => get_field('overview_image') ?: "",
                 'amenities' => $this->categorize_amenities(),
                 'floorplan_image' => get_values_in_repeater('floor_plans','floorplan_image'),
                 'floorplan_title' => get_values_in_repeater('floor_plans','floorplan_title'),
@@ -163,7 +185,7 @@ class Project_model extends Crud_model
                 'location_lat' => get_field('location_latitude'),
                 'location_long' => get_field('location_longitude'),
                 'location_title' => get_field('location_title'),
-                'location_image' => get_field('loc_image'),
+                'location_image' => get_field('loc_image') ?: "",
                 'city' => $city,
                 'area' => $area,
                 'unitplans_image' => get_values_in_repeater('unit_plans','unitplans_image'),
@@ -176,26 +198,7 @@ class Project_model extends Crud_model
             ];
         }
 
-        $last_updated = get_the_modified_date() .' '. get_the_modified_time();
-
-        $new_last_updated = DateTime::createFromFormat('F j, Y H:i A',$last_updated,new DateTimeZone('Asia/Hong_Kong'))->format('Y-m-d h:i:s');
-
-        $citydb = get_field('city');
-
-        $city = [
-            'id' => $citydb->ID,
-            'name' => $citydb->post_title,
-            'body' => $citydb->post_content
-        ];
-
-        $areadb = $this->area_model->getAreaByCityId($citydb->ID);
-
-
-        $area = [
-            'id' => $areadb->ID,
-            'name' => $areadb->post_title,
-            'body' => $areadb->post_content,
-        ];
+        
 
         // if($areadb->post_type == 'project'){
         //     var_dump(get_field_object('area',173))['value']; die();
@@ -256,7 +259,7 @@ class Project_model extends Crud_model
             //
             if(count($result) == 0){
 
-                $result[] = $this->createNewCat($x,$amenities);
+                if($cat = $this->createNewCat($x,$amenities)){ $result[] = $cat; }
 
             }else{
                 $found = false;
@@ -276,6 +279,7 @@ class Project_model extends Crud_model
                     
             }
         }
+        
         return $result;
     }
 
@@ -290,7 +294,16 @@ class Project_model extends Crud_model
         $cat['category_titles'][] = $amenities[$index]['amen_title'];
         $cat['category_images'][] = $amenities[$index]['amen_image'];
 
+        if($amenities[$index]['category'] != null){
+            return $cat;
+        }else{
+            return false;
+        }
+    }
 
-        return $cat;
+    public function getProjectsByCityId($id)
+    {
+        $result = $this->all(['city' => $id]);
+        return $result;
     }
 }
