@@ -714,7 +714,7 @@ project_id : 174
 
 #### Params (optional)
 |Parameter|Type|
-|----|----|---|
+|----|----|
 |device_id|String|
 
 ## Success Response
