@@ -18,6 +18,8 @@
     + [Get City By Id](#get-city-by-id)
     + [Get All Notifications](#get-all-notifications)
     + [Get Notifications By Id](#get-notification-by-id)
+    + [Mark Notification as read](#mark-notification-as-read)
+    + [Get Unread notification count by Device Id](#get-unread-notification-count-by-device-id)
     + [Get About Us Content](#get-about-us-content)
     + [Get Privacy Policy Content](#get-privacy-policy-content)
     + [Contact Us](#contact-us)
@@ -706,9 +708,14 @@ project_id : 174
 
 **URL** : `/api/areas`
 
-**Method** : `GET`
+**Method** : `POST`
 
 **Auth required** : YES
+
+#### Params (optional)
+|Parameter|Type|
+|----|----|---|
+|device_id|String|
 
 ## Success Response
 
@@ -1043,6 +1050,81 @@ notification_id: 340
 }
 ```
 
+# Mark Notification as read
+
+**URL** : `/api/notifications/read`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+#### Params
+|Parameter|Type|Sample|
+|----|----|---|
+|notification_id|Number|15|
+|device_id|String|"device_123"|
+
+## Success Response
+
+**code**: `201 Created`
+
+```json
+{
+    "data": {
+        "id": 482,
+        "title": "title",
+        "body": "<span style='font-size: 300%'>body</span>",
+        "created_at": "2019-02-27 06:05:26"
+    },
+    "meta": {
+        "message": "Notification marked as read",
+        "code": 201
+    }
+}
+
+```
+
+**if notification is already read**
+
+
+```json
+{
+    "meta": {
+        "message": "Notification already marked as read.",
+        "code": 200
+    }
+}
+```
+
+
+# Get Unread notification count by Device Id
+
+**URL** : `/api/notifications/unread_count`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+#### Params
+|Parameter|Type|Sample|
+|----|----|---|
+|device_id|String|"device_123"|
+
+## Success Response
+
+**code**: `200 OK`
+
+```json
+{
+    "data": {
+        "unread_count": 11,
+        "device_id": "device_123"
+    },
+    "meta": {
+        "code": 200
+    }
+}
+```
 
 # Get About Us Content
 
@@ -1137,4 +1219,3 @@ notification_id: 340
     }
 }
 ```
-
