@@ -23,6 +23,7 @@
     + [Get About Us Content](#get-about-us-content)
     + [Get Privacy Policy Content](#get-privacy-policy-content)
     + [Contact Us](#contact-us)
+    + [Get Latest Installation Date By Device Id](#get-latest-installation-date-by-device-id)
 
 # Get Projects
 
@@ -1215,6 +1216,42 @@ notification_id: 340
     },
     "meta": {
         "message": "Inquiry successfully sent!",
+        "code": 200
+    }
+}
+```
+
+# Get Latest Installation Date By Device Id
+
+
+**URL** : `/api/devices`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+#### Params
+|Parameter|Type|
+|----|----|
+|device_id|String|
+
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Sample Content**
+
+```json
+{
+    "data": {
+        "id": "2",
+        "device_id": "123_abc_0005555",
+        "installed_at": "2019-03-08 11:11:38",
+        "created_at": "2019-03-05 02:15:48"
+    },
+    "meta": {
+        "message": "Got data.",
         "code": 200
     }
 }
